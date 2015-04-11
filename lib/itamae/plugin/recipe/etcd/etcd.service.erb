@@ -1,0 +1,52 @@
+# /usr/lib64/systemd/system/etcd.service
+[Unit]
+Description=etcd <%= node['etcd']['version'] %>
+
+[Service]
+
+User=etcd
+
+Environment="ETCD_DATA_DIR=<%= node['etcd']['data_dir'] %>"
+Environment="ETCD_NAME=<%= node['etcd']['name'] %>"
+
+Environment="ETCD_LISTEN_CLIENT_URLS=<%= node['etcd']['listen_client_urls'] %>"
+Environment="ETCD_LISTEN_PEER_URLS=<%= node['etcd']['listen_peer_urls'] %>"
+Environment="ETCD_ADVERTISE_CLIENT_URLS=<%= node['etcd']['advertise_client_urls'] %>"
+Environment="ETCD_INITIAL_ADVERTISE_PEER_URLS=<%= node['etcd']['initial_advertise_peer_urls'] %>"
+
+<% if node['etcd']['discovery'] %>
+Environment="ETCD_DISCOVERY=<%= node['etcd']['discovery'] %>"
+<% end %>
+
+
+<% if node['etcd']['ca_file'] %>
+Environment="ETCD_CA_FILE=<%= node['etcd']['ca_file'] %>"
+<% end %>
+<% if node['etcd']['cert_file'] %>
+Environment="ETCD_CERT_FILE=<%= node['etcd']['cert_file'] %>"
+<% end %>
+<% if node['etcd']['key_file'] %>
+Environment="ETCD_KEY_FILE=<%= node['etcd']['key_file'] %>"
+<% end %>
+<% if node['etcd']['peer_ca_file'] %>
+Environment="ETCD_PEER_CA_FILE=<%= node['etcd']['peer_ca_file'] %>"
+<% end %>
+<% if node['etcd']['peer_cert_file'] %>
+Environment="ETCD_PEER_CERT_FILE=<%= node['etcd']['peer_cert_file'] %>"
+<% end %>
+<% if node['etcd']['peer_key_file'] %>
+Environment="ETCD_PEER_KEY_FILE=<%= node['etcd']['peer_key_file'] %>"
+<% end %>
+
+
+ExecStart=<%= node['etcd']['install_dir'] %>/etcd
+
+Restart=always
+RestartSec=10s
+
+LimitNOFILE=40000
+
+
+[Install]
+
+WantedBy=multi-user.target
