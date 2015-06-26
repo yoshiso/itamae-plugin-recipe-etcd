@@ -12,13 +12,6 @@ node['etcd']['systemd_dir']     ||= '/etc/systemd/system'
 # etcd server name
 node['etcd']['name']                        ||= "%H"
 
-# where itself listens.
-node['etcd']['listen_client_urls']          ||= 'http://localhost:2379,http://localhost:4001'
-node['etcd']['listen_peer_urls']            ||= 'http://localhost:2380,http://localhost:7001'
-# notify other etcd cluster where itself listen.
-node['etcd']['advertise_client_urls']       ||= 'http://localhost:2379,http://localhost:4001'
-node['etcd']['initial_advertise_peer_urls'] ||= 'http://localhost:2379,http://localhost:4001'
-
 node['etcd']['discovery']                   ||= node['etcd']['discovery']
 
 # config for secure etcd cluster if needed

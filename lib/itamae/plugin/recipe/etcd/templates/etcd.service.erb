@@ -9,24 +9,31 @@ User=etcd
 Environment="ETCD_DATA_DIR=<%= node['etcd']['data_dir'] %>"
 Environment="ETCD_NAME=<%= node['etcd']['name'] %>"
 
+<% if node['etcd']['listen_client_urls'] %>
 Environment="ETCD_LISTEN_CLIENT_URLS=<%= node['etcd']['listen_client_urls'] %>"
+<% end %>
+<% if node['etcd']['listen_peer_urls'] %>
 Environment="ETCD_LISTEN_PEER_URLS=<%= node['etcd']['listen_peer_urls'] %>"
+<% end %>
+<% if node['etcd']['advertise_client_urls'] %>
 Environment="ETCD_ADVERTISE_CLIENT_URLS=<%= node['etcd']['advertise_client_urls'] %>"
+<% end %>
+<% if node['etcd']['initial_advertise_peer_urls'] %>
 Environment="ETCD_INITIAL_ADVERTISE_PEER_URLS=<%= node['etcd']['initial_advertise_peer_urls'] %>"
-
+<% end %>
 
 <% if node['etcd']['discovery'] %>
 Environment="ETCD_DISCOVERY=<%= node['etcd']['discovery'] %>"
 <% end %>
 
 <% if node['etcd']['initial_cluster'] %>
-Environment="INITIAL_CLUSTER=<%= node['etcd']['initial_cluster'] %>"
+Environment="ETCD_INITIAL_CLUSTER=<%= node['etcd']['initial_cluster'] %>"
 <% end %>
 <% if node['etcd']['initial_cluster_state'] %>
-Environment="INITIAL_CLUSTER_STATE=<%= node['etcd']['initial_cluster_state'] %>"
+Environment="ETCD_INITIAL_CLUSTER_STATE=<%= node['etcd']['initial_cluster_state'] %>"
 <% end %>
 <% if node['etcd']['initial_cluster_token'] %>
-Environment="INITIAL_CLUSTER_TOKEN=<%= node['etcd']['initial_cluster_token'] %>"
+Environment="ETCD_INITIAL_CLUSTER_TOKEN=<%= node['etcd']['initial_cluster_token'] %>"
 <% end %>
 
 <% if node['etcd']['ca_file'] %>
