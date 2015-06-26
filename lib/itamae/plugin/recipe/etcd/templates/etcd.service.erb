@@ -14,8 +14,19 @@ Environment="ETCD_LISTEN_PEER_URLS=<%= node['etcd']['listen_peer_urls'] %>"
 Environment="ETCD_ADVERTISE_CLIENT_URLS=<%= node['etcd']['advertise_client_urls'] %>"
 Environment="ETCD_INITIAL_ADVERTISE_PEER_URLS=<%= node['etcd']['initial_advertise_peer_urls'] %>"
 
+
 <% if node['etcd']['discovery'] %>
 Environment="ETCD_DISCOVERY=<%= node['etcd']['discovery'] %>"
+<% end %>
+
+<% if node['etcd']['initial_cluster'] %>
+Environment="INITIAL_CLUSTER=<%= node['etcd']['initial_cluster'] %>"
+<% end %>
+<% if node['etcd']['initial_cluster_state'] %>
+Environment="INITIAL_CLUSTER_STATE=<%= node['etcd']['initial_cluster_state'] %>"
+<% end %>
+<% if node['etcd']['initial_cluster_token'] %>
+Environment="INITIAL_CLUSTER_TOKEN=<%= node['etcd']['initial_cluster_token'] %>"
 <% end %>
 
 <% if node['etcd']['ca_file'] %>
