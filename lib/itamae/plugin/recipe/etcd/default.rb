@@ -1,5 +1,10 @@
 include_recipe './attributes.rb'
 
+execute 'systemctl-daemon-reload' do
+  command '/bin/systemctl --system daemon-reload'
+  action :nothing
+end
+
 # create user
 user "etcd" do
   action :create
@@ -20,6 +25,8 @@ template "#{node['etcd']['systemd_dir']}/etcd.service" do
   variables node['etcd']
   mode "755"
   owner "root"
+  notifies :run, 'execute[systemctl-daemon-reload]', :immediately
+  notifies :restart, 'service[etcd]'
 end
 
 template "/etc/profile.d/etcdctl.sh" do
