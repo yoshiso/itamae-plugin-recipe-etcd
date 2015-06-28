@@ -36,6 +36,10 @@ Environment="ETCD_INITIAL_CLUSTER_STATE=<%= node['etcd']['initial_cluster_state'
 Environment="ETCD_INITIAL_CLUSTER_TOKEN=<%= node['etcd']['initial_cluster_token'] %>"
 <% end %>
 
+<% if node['etcd']['proxy'] %>
+Environment="ETCD_PROXY=<%= node['etcd']['proxy'] %>"
+<% end %>
+
 <% if node['etcd']['ca_file'] %>
 Environment="ETCD_CA_FILE=<%= node['etcd']['ca_file'] %>"
 <% end %>

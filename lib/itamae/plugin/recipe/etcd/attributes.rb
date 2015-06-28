@@ -24,5 +24,3 @@ node['etcd']['peer_key_file']               ||= nil
 
 
 node['etcdctl'] ||= {}
-
-node['etcdctl']['peers'] ||= "http://127.0.0.1:2379"
