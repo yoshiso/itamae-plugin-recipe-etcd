@@ -43,6 +43,9 @@ Environment="ETCD_PROXY=<%= node['etcd']['proxy'] %>"
 <% if node['etcd']['heartbeat_interval'] %>
 Environment="ETCD_HEARTBEAT_INTERVAL=<%= node['etcd']['heartbeat_interval'] %>"
 <% end %>
+<% if node['etcd']['election_timeout'] %>
+Environment="ETCD_ELECTION_TIMEOUT=<%= node['etcd']['election_timeout'] %>"
+<% end %>
 
 
 <% if node['etcd']['ca_file'] %>
