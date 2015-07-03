@@ -40,6 +40,11 @@ Environment="ETCD_INITIAL_CLUSTER_TOKEN=<%= node['etcd']['initial_cluster_token'
 Environment="ETCD_PROXY=<%= node['etcd']['proxy'] %>"
 <% end %>
 
+<% if node['etcd']['heartbeat_interval'] %>
+Environment="ETCD_HEARTBEAT_INTERVAL=<%= node['etcd']['heartbeat_interval'] %>"
+<% end %>
+
+
 <% if node['etcd']['ca_file'] %>
 Environment="ETCD_CA_FILE=<%= node['etcd']['ca_file'] %>"
 <% end %>
